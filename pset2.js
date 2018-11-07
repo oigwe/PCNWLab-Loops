@@ -5,17 +5,19 @@
     @desc - takes all engative numbers and makes positive
     @example - removeNegatives([-3,-2,1,2,3,-4]); // [3,2,1,2,3,4]
 */
-const removeNegatives = (arr) => {
-    
-    for (let i=0; i < arr.length; i++){
-        if (arr[i]<0) {
-            arr[i]=(arr[i]* -1);
-        }
-        arr[i];
+
+const removeNegative = (arr) => {
+    let newArr =  arr.map((e) => {
+     if (e < 0) {
+         return  e * -1;
+     }
+     return e; 
+    });
+    return newArr;
 }
-    return arr;
-}
-console.log(removeNegatives([-3,-2,1,2,3,-4]));
+
+console.log(removeNegative([-3,-2,1,2,3,-4]));
+console.log('-----')
 
 /*
     @func findVal
@@ -30,9 +32,10 @@ console.log(removeNegatives([-3,-2,1,2,3,-4]));
         findVal([1,2,3,4], 4); // 3
         findVal([1,2,3,4], 9); // -1
 */
+
 const findVal = (arr, val) => {
 for (let i=0; i <= arr.length; i++){
-    if (arr[i] == val) {
+    if (arr[i] === val) {
         return arr.indexOf(val);
     }
 }
@@ -41,6 +44,8 @@ return -1;
 console.log(findVal([1,2,3,4], 1));
 console.log(findVal([1,2,3,4], 4)); // 3
 console.log(findVal([1,2,3,4], 9)); // -1)
+console.log('-----')
+
 /*
     @func removeOdds
     @param {array} arr
@@ -52,19 +57,21 @@ console.log(findVal([1,2,3,4], 9)); // -1)
         removeOdds([1,2,3,4]); // [2,4]
         removeOdds([1,"2",3,4]); // [4]
 */
-const removeOdds = (arr) => {
-    let copyArr = [];
-    for (let i = 0; i < arr.length; i++){
-        if (arr[i] !== 'number'){
-            return `please change index ${i} to a number`
+
+const removeOdds = (arr) =>{
+     let newArr = arr.reduce((acc, e) =>{
+        if (typeof e === 'number' && e % 2 === 0){
+            acc.push(e)
         }
-         (arr[i] % 2 === 0)
-            return copyArr.push(arr[i]);
-    }
-   return copyArr;
+        return acc;
+    }, [])
+    return newArr;
 }
+
 console.log(removeOdds([1,2,3,4]));
 console.log(removeOdds([1,"2",3,4]));
+console.log('-----')
+
 /*
     @func addSquares
     @param {array} arr
@@ -73,15 +80,16 @@ console.log(removeOdds([1,"2",3,4]));
     @example - 
         addSquares([1,2,3,4); // [1,2,3,4,1,4,9,16]
 */
-const addSquares = (arr) => {
-    const copyArr = arr.slice(0);
-    for (let i = 0; i < arr.length; i++){
-        let index = arr[i] ** 2;
-         copyArr.push(index);
-    }
-    return copyArr;
+
+const addSquare = (arr) => {
+    let newArr = arr.map((e)=>{
+        return e**2;
+    })
+    return newArr;
 }
-console.log(addSquares([1,2,3,4]));
+console.log(addSquare([1,2,3,4]));
+console.log('-----')
+
 /*
     @func doubleify
     @param {array} arr
@@ -89,14 +97,22 @@ console.log(addSquares([1,2,3,4]));
     @desc - take each value of array, add same value right after
     @example - doubleify([1,2,3,4); // [1,1,2,2,3,3,4,4]
 */
-const doubleify = (arr) => {
-    let newArr = [];
-    for (let i=0; i < arr.length; i++) {
-        newArr.push(arr[i], arr[i]);
-    }
+
+const doubleify = arr => {
+    let newArr = arr.reduce((acc, e)=>{
+       acc.push(e, e);
+       return acc;
+    }, []);
     return newArr;
 }
+
 console.log(doubleify([1,2,3,4]));
+console.log(doubleify(["a"]));
+console.log(doubleify([]));
+console.log('-----')
+
+
+
 
 /*
     @func findMax
@@ -106,14 +122,19 @@ console.log(doubleify([1,2,3,4]));
     @example - findMax([1,2,3,99,4]); // 99 
 */
 
-const findMax = (arr) => {
-for (let i=0; i < arr.length; i++)
-if (arr[i]>arr[i+1]) {
-    return arr[i]
-}
-return arr[i+1]
+const findMax = arr => {
+    let maxNum = arr.reduce((acc, e) =>{
+        if (acc < e && typeof e === 'number'){
+            acc = e;
+        }
+        return acc;
+    },0);
+    return maxNum;
 }
 console.log(findMax([1,2,3,99,4]));
 console.log(findMax([1,2,150,99,4]));
 console.log(findMax([1000,2,3,99,10000]));
+console.log(findMax([1000,2,3,"a",10000]));
+  
+
 
