@@ -9,6 +9,26 @@
                getMiddle([1,2,3,4]); // [2,3]
 */
 
+
+const getMiddle = arr => {
+let newArr = [];
+    for (let i=0; i < arr.length; i++); {
+        
+        if (arr.length % 2 === 0){
+           newArr.push(arr[(arr.length/2)-1]);
+           newArr.push(arr[arr.length/2]);
+           return newArr;
+        }
+    
+     newArr.push(arr[Math.ceil(arr.length/2)]);
+    }
+return newArr;
+}
+console.log(getMiddle([1,2,3])); // [3]
+console.log(getMiddle([1,2,3,4])); // [2,3]
+console.log(getMiddle([1,2,3,4,5,6])); // [3,4]
+console.log('---')
+
 /*
     @func addToMiddle
     @param {array} arr
@@ -20,6 +40,20 @@
     @example - addToMiddle([1,2,3], 0); // [1,2,0,3];
                addToMiddle([1,2,3,4], 0); // [1,2,0,3,4]
 */
+const addToMiddle = (arr, element) => {
+    for (let i = 0; i < arr.length; i++) {
+    if (arr.length % 2 === 1) {
+        arr.splice((Math.ceil(arr.length/2)),0,element);
+        return arr;
+    }
+        arr.splice(arr.length/2,0,element);
+        return arr;
+  }
+}
+
+        console.log(addToMiddle([1,2,3], 0)); // [1,2,0,3];
+        console.log(addToMiddle([1,2,3,4], 0)); // [1,2,0,3,4]
+        console.log('---')
 
 /*
     @func hasAtSymbol
@@ -29,6 +63,17 @@
     @example - hasAtSymbol('taq@karim.com'); // true
                hasAtSymbol('foobar'); // false
 */
+const hasAtSymbol = string => {
+    if (string.includes('@')) {
+        return true;
+    }
+    return false;
+}
+
+    console.log(hasAtSymbol('taq@karim.com')); // true
+    console.log(hasAtSymbol('foobar')); // false
+    console.log('---')
+
 
 /*
     @func capitalize
@@ -40,6 +85,20 @@
                capitalize('Taq'); // 'Taq'
 */
 
+const capitalize = str => {
+    let upper = str.charAt(0).toUpperCase();
+    str.charAt(0) = upper;
+    return str;
+    
+    
+}
+console.log(capitalize('taq'));
+console.log(capitalize('Taq'));
+console.log(capitalize('TAQ'));
+console.log('---')
+
+
+
 /*
     @func isAllUpperCased
     @param {string} str
@@ -49,6 +108,7 @@
     @example isAllUpperCased('TAQ'); // true
              isAllUpperCased('tAq'); // false
 */
+
 
 /*
     @func capitalizeEachWord
@@ -107,5 +167,7 @@
         [6,7,8,9]
     ]); // [1,2,3,4,5,6,7,8,9]
 */
+
+
 
 
